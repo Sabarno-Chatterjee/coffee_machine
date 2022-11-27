@@ -38,6 +38,7 @@ MENU = {
         "ingredients": {
             "water": 50,
             "coffee": 18,
+            "milk" : 0,
         },
         "cost": 1.5,
     },
@@ -72,7 +73,7 @@ def take_order():
     if order == "off":
         global machine_on
         machine_on = False
-        return()
+
     elif order == "report":
         report()
     return order
@@ -97,5 +98,8 @@ machine_on = True
 while machine_on:
 
     new_order = take_order()
+    if new_order == "off" or new_order =="report":
+        continue
+
 
     check_resources(new_order)
