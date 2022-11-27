@@ -62,7 +62,7 @@ MENU = {
 
 resources = {
     "water": 300,
-    "milk": 0,
+    "milk": 200,
     "coffee": 100,
 }
 
@@ -88,6 +88,7 @@ the current resource values"""
 
 
 def check_resources(order):
+    """Checks for sufficient_resources."""
     global sufficient_resources
     for resource in resources:
         if (resources[resource]) < (MENU[order]["ingredients"][resource]):
@@ -95,6 +96,16 @@ def check_resources(order):
             return f"Insufficient {resource}, please wait for refill."
     else:
         return "Here's your cafe"
+
+
+def money(order):
+    print("\nPlease insert the coins.\n")
+    quarters = float(input("How many quarters?: ")) * 0.25
+    dimes = float(input("How many dimes?: ")) * 0.1
+    nickles = float(input("How many nickles?: ")) * 0.05
+    pennies = float(input("How many pennies?: ")) * 0.01
+    total_money_received = quarters + dimes + nickles + pennies
+    return total_money_received - float(MENU[order]["cost"])
 
 
 machine_on = True
@@ -107,6 +118,9 @@ while machine_on:
         continue
     else:
         print(check_resources(new_order))
+
+    if sufficient_resources:
+        print(money(new_order))
 
 # order = "latte"
 # print(check_resources(order))
