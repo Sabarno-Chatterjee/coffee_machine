@@ -1,5 +1,7 @@
 from menu import MENU
 from menu import resources
+
+
 # import art
 # # #
 # # # def report():
@@ -11,14 +13,7 @@ from menu import resources
 # # # #     return order
 # # # #
 # # # #
-# # def money(order):
-# #     print("\nPlease insert the coins.\n")
-# #     quarters = float(input("How many quarters?: ")) * 0.25
-# #     dimes = float(input("How many dimes?: ")) * 0.1
-# #     nickles = float(input("How many nickles?: ")) * 0.05
-# #     pennies = float(input("How many pennies?: ")) * 0.01
-# #     total_money_received = quarters + dimes + nickles + pennies
-# #     return total_money_received - float(menu.MENU[order]["cost"])
+
 #
 #
 # # order = take_order()
@@ -33,7 +28,6 @@ from menu import resources
 #     print(f"{ingredient} : {menu.MENU['latte']['ingredients'][ingredient]} ")
 #     item_quantity = ({menu.MENU['latte']['ingredients'][ingredient]})
 #     print(type(item_quantity))
-
 
 
 def take_order():
@@ -78,10 +72,9 @@ def money(order):
 
 
 machine_on = True
-sufficient_resources = True
 
 while machine_on:
-
+    sufficient_resources = True
     new_order = take_order()
     if new_order == "off" or new_order == "report":
         continue
