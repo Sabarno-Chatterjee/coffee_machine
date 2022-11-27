@@ -88,12 +88,17 @@ the current resource values"""
 
 
 def check_resources(order):
+    global sufficient_resources
     for resource in resources:
         if (resources[resource]) < (MENU[order]["ingredients"][resource]):
+            sufficient_resources = False
             return f"Insufficient {resource}, please wait for refill."
+    else:
+        return "Here's your cafe"
 
 
 machine_on = True
+sufficient_resources = True
 
 while machine_on:
 
