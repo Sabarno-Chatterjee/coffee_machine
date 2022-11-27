@@ -29,3 +29,8 @@ resources = {
     "milk": 200,
     "coffee": 100,
 }
+
+# print(MENU["latte"]["ingredients"]["water"])
+#
+# for bev in MENU:
+#     print([bev]["cost"])
