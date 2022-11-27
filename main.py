@@ -38,7 +38,7 @@ MENU = {
         "ingredients": {
             "water": 50,
             "coffee": 18,
-            "milk" : 0,
+            "milk": 0,
         },
         "cost": 1.5,
     },
@@ -62,7 +62,7 @@ MENU = {
 
 resources = {
     "water": 300,
-    "milk": 200,
+    "milk": 0,
     "coffee": 100,
 }
 
@@ -90,7 +90,7 @@ the current resource values"""
 def check_resources(order):
     for resource in resources:
         if (resources[resource]) < (MENU[order]["ingredients"][resource]):
-            return "Insufficient {resource}, please wait for refill."
+            return f"Insufficient {resource}, please wait for refill."
 
 
 machine_on = True
@@ -98,8 +98,10 @@ machine_on = True
 while machine_on:
 
     new_order = take_order()
-    if new_order == "off" or new_order =="report":
+    if new_order == "off" or new_order == "report":
         continue
+    else:
+        print(check_resources(new_order))
 
-
-    check_resources(new_order)
+# order = "latte"
+# print(check_resources(order))
