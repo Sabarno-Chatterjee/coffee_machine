@@ -68,7 +68,14 @@ resources = {
 
 def take_order():
     """To receive the order as input and return it."""
-    return input("What would you like? (espresso/latte/cappuccino): ").lower()
+    order = input("What would you like? (espresso/latte/cappuccino): ").lower()
+    if order == "off":
+        global machine_on
+        machine_on = False
+        return()
+    elif order == "report":
+        report()
+    return order
 
 
 def report():
@@ -82,18 +89,13 @@ the current resource values"""
 def check_resources(order):
     for resource in resources:
         if (resources[resource]) < (MENU[order]["ingredients"][resource]):
-            print(f"Insufficient {resource}, please wait for refill.")
+            return "Insufficient {resource}, please wait for refill."
 
 
-order = "latte"
-# machine_on = True
-#
-# while machine_on:
-#
-#     order = take_order()
-#     if order == "off":
-#         machine_on = False
-#     elif order == "report":
-#         report()
+machine_on = True
 
-check_resources(order)
+while machine_on:
+
+    new_order = take_order()
+
+    check_resources(new_order)
