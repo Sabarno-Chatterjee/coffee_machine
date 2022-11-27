@@ -1,4 +1,5 @@
-# import menu
+from menu import MENU
+from menu import resources
 # import art
 # # #
 # # # def report():
@@ -33,38 +34,6 @@
 #     item_quantity = ({menu.MENU['latte']['ingredients'][ingredient]})
 #     print(type(item_quantity))
 
-MENU = {
-    "espresso": {
-        "ingredients": {
-            "water": 50,
-            "coffee": 18,
-            "milk": 0,
-        },
-        "cost": 1.5,
-    },
-    "latte": {
-        "ingredients": {
-            "water": 200,
-            "milk": 150,
-            "coffee": 24,
-        },
-        "cost": 2.5,
-    },
-    "cappuccino": {
-        "ingredients": {
-            "water": 250,
-            "milk": 100,
-            "coffee": 24,
-        },
-        "cost": 3.0,
-    }
-}
-
-resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
-}
 
 
 def take_order():
@@ -95,7 +64,7 @@ def check_resources(order):
             sufficient_resources = False
             return f"Insufficient {resource}, please wait for refill."
     else:
-        return "Here's your cafe"
+        return f"Here's your {order}"
 
 
 def money(order):
@@ -105,7 +74,7 @@ def money(order):
     nickles = float(input("How many nickles?: ")) * 0.05
     pennies = float(input("How many pennies?: ")) * 0.01
     total_money_received = quarters + dimes + nickles + pennies
-    return total_money_received - float(MENU[order]["cost"])
+    return round(total_money_received - float(MENU[order]["cost"]), 2)
 
 
 machine_on = True
