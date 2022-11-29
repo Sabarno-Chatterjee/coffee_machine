@@ -2,18 +2,6 @@ from menu import MENU
 from menu import resources
 
 
-
-
-#
-# print(menu.MENU["latte"]["ingredients"])
-#
-# for ingredient in menu.MENU["latte"]["ingredients"]:
-#
-#     print(f"{ingredient} : {menu.MENU['latte']['ingredients'][ingredient]} ")
-#     item_quantity = ({menu.MENU['latte']['ingredients'][ingredient]})
-#     print(type(item_quantity))
-
-
 def take_order():
     """To receive the order as input and return it."""
     order = input("What would you like? (espresso/latte/cappuccino): ").lower()
@@ -42,11 +30,12 @@ def check_resources(order):
             sufficient_resources = False
             return f"Insufficient {resource}, please wait for refill."
     else:
-        return f"Here's your {order}"
+        return f"{order.title()}, is an excellent choice. "
 
 
 def money(order):
     """Receives money and returns the change."""
+    global sufficient_money
     print("\nPlease insert the coins.\n")
     quarters = float(input("How many quarters?: ")) * 0.25
     dimes = float(input("How many dimes?: ")) * 0.1
@@ -54,24 +43,33 @@ def money(order):
     pennies = float(input("How many pennies?: ")) * 0.01
     total_money_received = quarters + dimes + nickles + pennies
     if total_money_received < MENU[order]["cost"]:
+        sufficient_money = False
         return f"Sorry that's not enough money. ${total_money_received} refunded."
     else:
         return_money = round(total_money_received - float(MENU[order]["cost"]), 2)
         return f"Here's your change ${return_money}, Have a nice day!"
 
 
+def make_coffee(order):
+    """Take's the order as an argument and prepares the coffee by deducting the resources."""
+    for resource in resources:
+        resources[resource] = resources[resource] - MENU[order]["ingredients"][resource]
+        return f"Here's your {order}"
+
+
 machine_on = True
 
 while machine_on:
     sufficient_resources = True
+    sufficient_money = True
     new_order = take_order()
     if new_order == "off" or new_order == "report":
         continue
     else:
         print(check_resources(new_order))
 
-    if sufficient_resources:
+    if sufficient_resources and sufficient_money:
         print(money(new_order))
+        print(make_coffee(new_order))
 
-# order = "latte"
-# print(check_resources(order))
+# print(resources)
