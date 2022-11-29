@@ -2,24 +2,8 @@ from menu import MENU
 from menu import resources
 
 
-# import art
-# # #
-# # # def report():
-# # #
-# # def take_order():
-# #     order = input("What would you like? (espresso/latte/cappuccino):\n").lower()
-# # # #     if order == "report":
-# # # #
-# # # #     return order
-# # # #
-# # # #
 
-#
-#
-# # order = take_order()
-# # change = money(order)
-# # print(f"\nHere's your change ${change}")
-# # print("Have a nice day!")
+
 #
 # print(menu.MENU["latte"]["ingredients"])
 #
@@ -62,13 +46,18 @@ def check_resources(order):
 
 
 def money(order):
+    """Receives money and returns the change."""
     print("\nPlease insert the coins.\n")
     quarters = float(input("How many quarters?: ")) * 0.25
     dimes = float(input("How many dimes?: ")) * 0.1
     nickles = float(input("How many nickles?: ")) * 0.05
     pennies = float(input("How many pennies?: ")) * 0.01
     total_money_received = quarters + dimes + nickles + pennies
-    return round(total_money_received - float(MENU[order]["cost"]), 2)
+    if total_money_received < MENU[order]["cost"]:
+        return f"Sorry that's not enough money. ${total_money_received} refunded."
+    else:
+        return_money = round(total_money_received - float(MENU[order]["cost"]), 2)
+        return f"Here's your change ${return_money}, Have a nice day!"
 
 
 machine_on = True
