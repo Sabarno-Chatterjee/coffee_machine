@@ -27,8 +27,9 @@ MENU = {
 
 resources = {
     "water": 300,
-    "milk": 0,
+    "milk": 200,
     "coffee": 100,
+    "money": 0,
 }
 
 # print(MENU["latte"]["ingredients"]["water"])

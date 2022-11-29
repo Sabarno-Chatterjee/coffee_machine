@@ -7,6 +7,7 @@ def take_order():
     order = input("\n\nWhat would you like? (espresso/latte/cappuccino): ").lower()
     if order == "off":
         global machine_on
+        print("\nMachine down for maintenance.\n")
         machine_on = False
 
     elif order == "report":
@@ -55,8 +56,9 @@ def money(order):
 def make_coffee(order):
     """Take's the order as an argument and prepares the coffee by deducting the resources."""
     for resource in resources:
-        resources[resource] = resources[resource] - MENU[order]["ingredients"][resource]
-        return f"Here's your {order}"
+        if resource != "money":
+            resources[resource] = resources[resource] - MENU[order]["ingredients"][resource]
+    return f"Here's your simmering cup of {order}, enjoy!"
 
 
 machine_on = True
@@ -75,4 +77,4 @@ while machine_on:
     if sufficient_money and sufficient_resources:
         print(make_coffee(new_order))
 
-# print(resources)
+
