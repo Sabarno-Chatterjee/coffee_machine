@@ -19,16 +19,17 @@ def report():
 the current resource values"""
     for resource in resources:
         print(f"{resource.title()} : {resources[resource]}")
-    print(f"Money : $0 ")
+    # print(f"Money : $0 ")
 
 
 def check_resources(order):
     """Checks for sufficient_resources."""
     global sufficient_resources
     for resource in resources:
-        if (resources[resource]) < (MENU[order]["ingredients"][resource]):
-            sufficient_resources = False
-            return f"Insufficient {resource}, please wait for refill."
+        if resource != "money":
+            if (resources[resource]) < (MENU[order]["ingredients"][resource]):
+                sufficient_resources = False
+                return f"Insufficient {resource}, please wait for refill."
     else:
         return f"{order.title()}, is an excellent choice. "
 
@@ -41,11 +42,12 @@ def money(order):
     dimes = float(input("How many dimes?: ")) * 0.1
     nickles = float(input("How many nickles?: ")) * 0.05
     pennies = float(input("How many pennies?: ")) * 0.01
-    total_money_received = quarters + dimes + nickles + pennies
+    total_money_received = round((quarters + dimes + nickles + pennies), 2)
     if total_money_received < MENU[order]["cost"]:
         sufficient_money = False
-        return f"Sorry that's not enough money, ${round(total_money_received,2)} refunded."
+        return f"Sorry that's not enough money, ${total_money_received} refunded."
     else:
+        resources["money"] += MENU[order]["cost"]
         return_money = round(total_money_received - float(MENU[order]["cost"]), 2)
         return f"Here's your change ${return_money}, Have a nice day!"
 
