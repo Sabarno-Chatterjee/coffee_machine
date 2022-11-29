@@ -4,7 +4,7 @@ from menu import resources
 
 def take_order():
     """To receive the order as input and return it."""
-    order = input("What would you like? (espresso/latte/cappuccino): ").lower()
+    order = input("\n\nWhat would you like? (espresso/latte/cappuccino): ").lower()
     if order == "off":
         global machine_on
         machine_on = False
@@ -44,7 +44,7 @@ def money(order):
     total_money_received = quarters + dimes + nickles + pennies
     if total_money_received < MENU[order]["cost"]:
         sufficient_money = False
-        return f"Sorry that's not enough money. ${total_money_received} refunded."
+        return f"Sorry that's not enough money, ${round(total_money_received,2)} refunded."
     else:
         return_money = round(total_money_received - float(MENU[order]["cost"]), 2)
         return f"Here's your change ${return_money}, Have a nice day!"
@@ -68,8 +68,9 @@ while machine_on:
     else:
         print(check_resources(new_order))
 
-    if sufficient_resources and sufficient_money:
+    if sufficient_resources:
         print(money(new_order))
+    if sufficient_money and sufficient_resources:
         print(make_coffee(new_order))
 
 # print(resources)
