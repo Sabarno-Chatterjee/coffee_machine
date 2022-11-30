@@ -32,7 +32,3 @@ resources = {
     "money": 0,
 }
 
-# print(MENU["latte"]["ingredients"]["water"])
-#
-# for bev in MENU:
-#     print([bev]["cost"])

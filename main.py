@@ -44,7 +44,7 @@ def money(order):
     total = float(input("How many quarters?: ")) * 0.25
     total += float(input("How many dimes?: ")) * 0.1
     total += float(input("How many nickles?: ")) * 0.05
-    total += round((float(input("How many pennies?: ")) * 0.01),2)
+    total += round((float(input("How many pennies?: ")) * 0.01), 2)
     if total < MENU[order]["cost"]:
         sufficient_money = False
         return f"Sorry that's not enough money, ${total} refunded."
@@ -65,9 +65,26 @@ def make_coffee(order):
 
 def refill():
     """Refills the coffee machine"""
+
+    # for resource in resources:
+    #     if resource != "money" and resources[resource] == 0:
+    #         resources[resource] = resources[resource] + 200
+    def refill_coffee():
+        """Refills coffee"""
+        resources["coffee"] += 100
+
+    def refill_milk():
+        """Refills milk"""
+        resources["milk"] += 200
+
+    def refill_water():
+        """Refills water"""
+        resources["water"] += 300
+
     for resource in resources:
-        if resource != "money":
-            resources[resource] = resources[resource] + 50
+
+        if resource != "money" and resources[resource] < (MENU[order]["ingredients"][resource]):
+            resources[resource] = resources[resource] + 200
 
 
 machine_on = True
