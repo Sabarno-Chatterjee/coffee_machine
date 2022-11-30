@@ -1,5 +1,6 @@
 from menu import MENU
 from menu import resources
+from art import coffee
 
 
 def take_order():
@@ -58,7 +59,8 @@ def make_coffee(order):
     for resource in resources:
         if resource != "money":
             resources[resource] = resources[resource] - MENU[order]["ingredients"][resource]
-    return f"Here's your simmering cup of {order}, enjoy!"
+    print(coffee)
+    return f"\nHere's your simmering cup of {order}, enjoy!"
 
 
 machine_on = True
