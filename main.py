@@ -13,6 +13,8 @@ def take_order():
 
     elif order == "report":
         report()
+    elif order == "refill":
+        refill()
     return order
 
 
@@ -21,7 +23,7 @@ def report():
 the current resource values"""
     for resource in resources:
         print(f"{resource.title()} : {resources[resource]}")
-    # print(f"Money : $0 ")
+
 
 
 def check_resources(order):
@@ -63,13 +65,20 @@ def make_coffee(order):
     return f"\nHere's your simmering cup of {order}, enjoy!"
 
 
+def refill():
+    """Refills the coffee machine"""
+    for resource in resources:
+        if resource != "money":
+            resources[resource] = resources[resource] + 50
+
+
 machine_on = True
 
 while machine_on:
     sufficient_resources = True
     sufficient_money = True
     new_order = take_order()
-    if new_order == "off" or new_order == "report":
+    if new_order == "off" or new_order == "report" or new_order == "refill":
         continue
     else:
         print(check_resources(new_order))
@@ -78,5 +87,3 @@ while machine_on:
         print(money(new_order))
     if sufficient_money and sufficient_resources:
         print(make_coffee(new_order))
-
-
