@@ -25,7 +25,6 @@ the current resource values"""
         print(f"{resource.title()} : {resources[resource]}")
 
 
-
 def check_resources(order):
     """Checks for sufficient_resources."""
     global sufficient_resources
@@ -42,17 +41,16 @@ def money(order):
     """Receives money and returns the change."""
     global sufficient_money
     print("\nPlease insert the coins.\n")
-    quarters = float(input("How many quarters?: ")) * 0.25
-    dimes = float(input("How many dimes?: ")) * 0.1
-    nickles = float(input("How many nickles?: ")) * 0.05
-    pennies = float(input("How many pennies?: ")) * 0.01
-    total_money_received = round((quarters + dimes + nickles + pennies), 2)
-    if total_money_received < MENU[order]["cost"]:
+    total = float(input("How many quarters?: ")) * 0.25
+    total += float(input("How many dimes?: ")) * 0.1
+    total += float(input("How many nickles?: ")) * 0.05
+    total += round((float(input("How many pennies?: ")) * 0.01),2)
+    if total < MENU[order]["cost"]:
         sufficient_money = False
-        return f"Sorry that's not enough money, ${total_money_received} refunded."
+        return f"Sorry that's not enough money, ${total} refunded."
     else:
         resources["money"] += MENU[order]["cost"]
-        return_money = round(total_money_received - float(MENU[order]["cost"]), 2)
+        return_money = round(total - float(MENU[order]["cost"]), 2)
         return f"Here's your change ${return_money}, Have a nice day!"
 
 
