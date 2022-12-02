@@ -25,33 +25,33 @@ the current resource values"""
         print(f"{resource.title()} : {resources[resource]}")
 
 
-def check_resources(order):
+def sufficient_resources(order):
     """Checks for sufficient_resources."""
-    global sufficient_resources
     for resource in resources:
         if resource != "money":
             if (resources[resource]) < (MENU[order]["ingredients"][resource]):
-                sufficient_resources = False
-                return f"Insufficient {resource}, please wait for refill."
+                print(f"Insufficient {resource}, please wait for refill.")
+                return False
     else:
-        return f"{order.title()}, is an excellent choice. "
+        print(f"{order.title()}, is an excellent choice.")
+        return True
 
 
-def money(order):
+def sufficient_money(order):
     """Receives money and returns the change."""
-    global sufficient_money
     print("\nPlease insert the coins.\n")
     total = float(input("How many quarters?: ")) * 0.25
     total += float(input("How many dimes?: ")) * 0.1
     total += float(input("How many nickles?: ")) * 0.05
     total += round((float(input("How many pennies?: ")) * 0.01), 2)
     if total < MENU[order]["cost"]:
-        sufficient_money = False
-        return f"Sorry that's not enough money, ${total} refunded."
+        print(f"Sorry that's not enough money, ${total} refunded.")
+        return False
     else:
         resources["money"] += MENU[order]["cost"]
         return_money = round(total - float(MENU[order]["cost"]), 2)
-        return f"Here's your change ${return_money}, Have a nice day!"
+        print(f"Here's your change ${return_money}, Have a nice day!")
+        return True
 
 
 def make_coffee(order):
@@ -60,7 +60,7 @@ def make_coffee(order):
         if resource != "money":
             resources[resource] = resources[resource] - MENU[order]["ingredients"][resource]
     print(coffee)
-    return f"\nHere's your simmering cup of {order}, enjoy!"
+    print(f"\nHere's your simmering cup of {order}, enjoy!")
 
 
 def refill():
@@ -96,15 +96,9 @@ def refill():
 machine_on = True
 
 while machine_on:
-    sufficient_resources = True
-    sufficient_money = True
     new_order = take_order()
     if new_order == "off" or new_order == "report" or new_order == "refill":
         continue
-    else:
-        print(check_resources(new_order))
-
-    if sufficient_resources:
-        print(money(new_order))
-    if sufficient_money and sufficient_resources:
-        print(make_coffee(new_order))
+    if sufficient_resources(new_order):
+        if sufficient_money(new_order):
+            make_coffee(new_order)
