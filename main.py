@@ -1,5 +1,6 @@
 from menu import MENU
 from menu import resources
+from menu import add_on
 from art import coffee
 
 
@@ -23,6 +24,7 @@ def report():
 the current resource values"""
     for resource in resources:
         print(f"{resource.title()} : {resources[resource]}")
+    print(f"Sugar : {add_on['sugar']}")
 
 
 def sufficient_resources(order):
@@ -100,5 +102,9 @@ while machine_on:
     if new_order == "off" or new_order == "report" or new_order == "refill":
         continue
     if sufficient_resources(new_order):
+        if (input("Would you like to add sugar?\n")).lower() == "y":
+            add_on["sugar"] -= 10
+        else:
+            pass
         if sufficient_money(new_order):
             make_coffee(new_order)

@@ -32,3 +32,6 @@ resources = {
     "money": 0,
 }
 
+add_on = {
+    "sugar" : 100,
+}
