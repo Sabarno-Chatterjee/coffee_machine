@@ -82,9 +82,15 @@ def refill():
         resources["water"] += 300
 
     for resource in resources:
+        for drink in MENU:
 
-        if resource != "money" and resources[resource] < (MENU[order]["ingredients"][resource]):
-            resources[resource] = resources[resource] + 200
+            if resource != "money" and resources[resource] < (MENU[drink]["ingredients"][resource]):
+                if resource == "coffee":
+                    refill_coffee()
+                elif resource == "milk":
+                    refill_milk()
+                elif resource == "water":
+                    refill_water()
 
 
 machine_on = True
