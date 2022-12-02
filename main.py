@@ -34,6 +34,9 @@ def sufficient_resources(order):
             if (resources[resource]) < (MENU[order]["ingredients"][resource]):
                 print(f"Insufficient {resource}, please wait for refill.")
                 return False
+            elif add_on["sugar"] <= 10:
+                print(f"Insufficient sugar, please wait for refill.")
+                return False
     else:
         print(f"{order.title()}, is an excellent choice.")
         return True
@@ -67,10 +70,6 @@ def make_coffee(order):
 
 def refill():
     """Refills the coffee machine"""
-
-    # for resource in resources:
-    #     if resource != "money" and resources[resource] == 0:
-    #         resources[resource] = resources[resource] + 200
     def refill_coffee():
         """Refills coffee"""
         resources["coffee"] += 100
@@ -83,6 +82,10 @@ def refill():
         """Refills water"""
         resources["water"] += 300
 
+    def refill_sugar():
+        """Refills sugar"""
+        add_on["sugar"] += 90
+
     for resource in resources:
         for drink in MENU:
 
@@ -93,6 +96,8 @@ def refill():
                     refill_milk()
                 elif resource == "water":
                     refill_water()
+    if add_on["sugar"] <= 10:
+        refill_sugar()
 
 
 machine_on = True
