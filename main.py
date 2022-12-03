@@ -1,10 +1,12 @@
 from art import coffee
+from art import tea
 import menu
+# from menu import tea
 
 
 def take_order():
     """To receive the order as input and return it."""
-    order = input("\n\nWhat would you like? (espresso/latte/cappuccino): ").lower()
+    order = input("\n\nWhat would you like? (espresso/latte/cappuccino/masala chai): ").lower()
     if order == "off":
         global machine_on
         print("\nMachine down for maintenance.\n")
@@ -23,11 +25,20 @@ the current resource values"""
     for resource in menu.resources:
         print(f"{resource.title()} : {menu.resources[resource]}")
     print(f"Sugar : {menu.add_on['sugar']}")
+    print(f"Tea premix : {menu.tea['tea_premix']}")
 
 
 def sufficient_resources(order):
     """Checks for sufficient_resources."""
     for resource in menu.resources:
+        if order == "masala chai" and resource != "money":
+            if menu.tea["tea_premix"] < menu.MENU[order]["ingredients"][resource]:
+                print(f"Insufficient {resource}, please wait for refill.")
+                return False
+            else:
+                print(f"{order.title()}, is an excellent choice.")
+                return True
+
         if resource != "money":
             if (menu.resources[resource]) < (menu.MENU[order]["ingredients"][resource]):
                 print(f"Insufficient {resource}, please wait for refill.")
@@ -59,7 +70,15 @@ def sufficient_money(order):
 
 def make_coffee(order):
     """Take's the order as an argument and prepares the coffee by deducting the resources."""
+
+
+    # print(tea)
+    # print(f"\nHere's your simmering cup of {order}, enjoy!")
+    # return ()
+
     for resource in menu.resources:
+        if order == "masala chai" and resource != "money":
+            menu.tea["tea_premix"] -= 30
         if resource != "money":
             menu.resources[resource] = menu.resources[resource] - menu.MENU[order]["ingredients"][resource]
     print(coffee)
@@ -81,6 +100,8 @@ def refill():
                     menu.resources["water"] += 300
     if menu.add_on["sugar"] <= 10:
         menu.add_on["sugar"] += 90
+    elif menu.tea["tea_premix"] <= 30:
+        menu.tea["tea_premix"] += 70
 
 
 machine_on = True

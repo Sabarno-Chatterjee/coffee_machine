@@ -22,6 +22,14 @@ MENU = {
             "coffee": 24,
         },
         "cost": 3.0,
+    },
+    "masala chai": {
+        "ingredients": {
+            "water": 100,
+            "milk": 100,
+            "tea_premix": 30,
+        },
+        "cost": 2.5,
     }
 }
 
@@ -29,9 +37,14 @@ resources = {
     "water": 300,
     "milk": 200,
     "coffee": 100,
+
     "money": 0,
 }
 
+tea = {
+    "tea_premix": 100,
+}
+
 add_on = {
-    "sugar" : 100,
+    "sugar": 100,
 }
