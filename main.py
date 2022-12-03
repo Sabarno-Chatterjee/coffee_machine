@@ -1,6 +1,3 @@
-# from menu import MENU
-# from menu import resources
-# from menu import add_on
 from art import coffee
 import menu
 
@@ -25,17 +22,17 @@ def report():
 the current resource values"""
     for resource in menu.resources:
         print(f"{resource.title()} : {menu.resources[resource]}")
-    print(f"Sugar : {add_on['sugar']}")
+    print(f"Sugar : {menu.add_on['sugar']}")
 
 
 def sufficient_resources(order):
     """Checks for sufficient_resources."""
-    for resource in resources:
+    for resource in menu.resources:
         if resource != "money":
-            if (resources[resource]) < (MENU[order]["ingredients"][resource]):
+            if (menu.resources[resource]) < (menu.MENU[order]["ingredients"][resource]):
                 print(f"Insufficient {resource}, please wait for refill.")
                 return False
-            elif add_on["sugar"] <= 10:
+            elif menu.add_on["sugar"] <= 10:
                 print(f"Insufficient sugar, please wait for refill.")
                 return False
     else:
@@ -50,21 +47,21 @@ def sufficient_money(order):
     total += float(input("How many dimes?: ")) * 0.1
     total += float(input("How many nickles?: ")) * 0.05
     total += round((float(input("How many pennies?: ")) * 0.01), 2)
-    if total < MENU[order]["cost"]:
+    if total < menu.MENU[order]["cost"]:
         print(f"Sorry that's not enough money, ${total} refunded.")
         return False
     else:
-        resources["money"] += MENU[order]["cost"]
-        return_money = round(total - float(MENU[order]["cost"]), 2)
+        menu.resources["money"] += menu.MENU[order]["cost"]
+        return_money = round(total - float(menu.MENU[order]["cost"]), 2)
         print(f"Here's your change ${return_money}, Have a nice day!")
         return True
 
 
 def make_coffee(order):
     """Take's the order as an argument and prepares the coffee by deducting the resources."""
-    for resource in resources:
+    for resource in menu.resources:
         if resource != "money":
-            resources[resource] = resources[resource] - MENU[order]["ingredients"][resource]
+            menu.resources[resource] = menu.resources[resource] - menu.MENU[order]["ingredients"][resource]
     print(coffee)
     print(f"\nHere's your simmering cup of {order}, enjoy!")
 
@@ -72,18 +69,18 @@ def make_coffee(order):
 def refill():
     """Refills the coffee machine"""
 
-    for resource in resources:
-        for drink in MENU:
+    for resource in menu.resources:
+        for drink in menu.MENU:
 
-            if resource != "money" and resources[resource] < (MENU[drink]["ingredients"][resource]):
+            if resource != "money" and menu.resources[resource] < (menu.MENU[drink]["ingredients"][resource]):
                 if resource == "coffee":
-                    resources["coffee"] += 100
+                    menu.resources["coffee"] += 100
                 elif resource == "milk":
-                    resources["milk"] += 200
+                    menu.resources["milk"] += 200
                 elif resource == "water":
-                    resources["water"] += 300
-    if add_on["sugar"] <= 10:
-        add_on["sugar"] += 90
+                    menu.resources["water"] += 300
+    if menu.add_on["sugar"] <= 10:
+        menu.add_on["sugar"] += 90
 
 
 machine_on = True
@@ -94,7 +91,7 @@ while machine_on:
         continue
     if sufficient_resources(new_order):
         if (input("Would you like to add sugar?\n")).lower() == "y":
-            add_on["sugar"] -= 10
+            menu.add_on["sugar"] -= 10
         else:
             pass
         if sufficient_money(new_order):
