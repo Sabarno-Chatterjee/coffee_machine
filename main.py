@@ -1,7 +1,8 @@
-from menu import MENU
-from menu import resources
-from menu import add_on
+# from menu import MENU
+# from menu import resources
+# from menu import add_on
 from art import coffee
+import menu
 
 
 def take_order():
@@ -22,8 +23,8 @@ def take_order():
 def report():
     """Generates report that shows
 the current resource values"""
-    for resource in resources:
-        print(f"{resource.title()} : {resources[resource]}")
+    for resource in menu.resources:
+        print(f"{resource.title()} : {menu.resources[resource]}")
     print(f"Sugar : {add_on['sugar']}")
 
 
@@ -70,34 +71,19 @@ def make_coffee(order):
 
 def refill():
     """Refills the coffee machine"""
-    def refill_coffee():
-        """Refills coffee"""
-        resources["coffee"] += 100
-
-    def refill_milk():
-        """Refills milk"""
-        resources["milk"] += 200
-
-    def refill_water():
-        """Refills water"""
-        resources["water"] += 300
-
-    def refill_sugar():
-        """Refills sugar"""
-        add_on["sugar"] += 90
 
     for resource in resources:
         for drink in MENU:
 
             if resource != "money" and resources[resource] < (MENU[drink]["ingredients"][resource]):
                 if resource == "coffee":
-                    refill_coffee()
+                    resources["coffee"] += 100
                 elif resource == "milk":
-                    refill_milk()
+                    resources["milk"] += 200
                 elif resource == "water":
-                    refill_water()
+                    resources["water"] += 300
     if add_on["sugar"] <= 10:
-        refill_sugar()
+        add_on["sugar"] += 90
 
 
 machine_on = True
