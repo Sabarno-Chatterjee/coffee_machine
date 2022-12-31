@@ -23,6 +23,7 @@ MENU = {
         },
         "cost": 3.0,
     },
+<<<<<<< HEAD
     # "masala chai": {
     #     "ingredients": {
     #         "water": 100,
@@ -31,6 +32,20 @@ MENU = {
     #     },
     #     "cost": 2.5,
     # }
+=======
+    }
+}
+
+TEA = {
+     "masala chai": {
+        "ingredients": {
+            "water": 100,
+            "milk": 100,
+            "tea_premix": 30,
+        },
+        "cost": 2.5,
+     },
+>>>>>>> d4509512e032d723c47815a4bf248f9efbbdaac4
 }
 
 resources = {
