@@ -23,14 +23,14 @@ MENU = {
         },
         "cost": 3.0,
     },
-    "masala chai": {
-        "ingredients": {
-            "water": 100,
-            "milk": 100,
-            "tea_premix": 30,
-        },
-        "cost": 2.5,
-    }
+    # "masala chai": {
+    #     "ingredients": {
+    #         "water": 100,
+    #         "milk": 100,
+    #         "tea_premix": 30,
+    #     },
+    #     "cost": 2.5,
+    # }
 }
 
 resources = {
