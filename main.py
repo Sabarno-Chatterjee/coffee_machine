@@ -80,7 +80,7 @@ def make_coffee(order):
         if order == "masala chai" and resource != "money":
             menu.tea["tea_premix"] -= 30
         if resource != "money":
-            menu.resources[resource] = menu.resources[resource] - menu.MENU[order]["igit push ngredients"][resource]
+            menu.resources[resource] = menu.resources[resource] - menu.MENU[order]["ingredients"][resource]
     print(coffee)
     print(f"\nHere's your simmering cup of {order}, enjoy!")
 
