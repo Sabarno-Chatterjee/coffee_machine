@@ -64,7 +64,16 @@ def sufficient_money(order):
     total += float(input("How many dimes?: ")) * 0.1
     total += float(input("How many nickles?: ")) * 0.05
     total += round((float(input("How many pennies?: ")) * 0.01), 2)
-    if total < menu.MENU[order]["cost"]:
+    if order == "masala chai":
+        if total < menu.TEA[order]["cost"]:
+            print(f"Sorry that's not enough money, ${total} refunded.")
+            return False
+        else:
+            menu.resources["money"] += menu.TEA[order]["cost"]
+            return_money = round(total - float(menu.TEA[order]["cost"]), 2)
+            print(f"Here's your change ${return_money}, Have a nice day!")
+            return True
+    elif total < menu.MENU[order]["cost"]:
         print(f"Sorry that's not enough money, ${total} refunded.")
         return False
     else:
