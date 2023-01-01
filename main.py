@@ -1,5 +1,4 @@
-from art import coffee
-from art import tea
+import art
 import menu
 from menu import tea
 
@@ -93,9 +92,13 @@ def make_coffee(order):
     for resource in menu.resources:
         if order == "masala chai" and resource != "money":
             tea["tea_premix"] -= 30
+            break
         if resource != "money":
             menu.resources[resource] = menu.resources[resource] - menu.MENU[order]["ingredients"][resource]
-    print(coffee)
+    if order == "masala chai":
+        print(art.tea)
+    else:
+        print(art.coffee)
     print(f"\nHere's your simmering cup of {order}, enjoy!")
 
 # def make_chai(order):
