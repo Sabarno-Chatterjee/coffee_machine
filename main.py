@@ -1,6 +1,5 @@
 import art
 import menu
-from menu import tea
 
 
 def take_order():
@@ -8,7 +7,7 @@ def take_order():
     order = input("\n\nWhat would you like? (espresso/latte/cappuccino/masala chai): ").lower()
     if order == "off":
         global machine_on
-        print("\nMachine down for maintenance.\n")
+        print("\nMachine down for maintenance. Come back later!\n")
         machine_on = False
 
     elif order == "report":
@@ -32,7 +31,7 @@ def sufficient_resources(order):
     """Checks for sufficient_resources."""
     for resource in menu.resources:
         if order == "masala chai" and resource != "money":
-            if tea["tea_premix"] < menu.TEA[order]["ingredients"][resource]:
+            if menu.tea["tea_premix"] < menu.TEA[order]["ingredients"][resource]:
                 print(f"Insufficient {resource}, please wait for refill.")
                 return False
             else:
@@ -83,7 +82,7 @@ def make_coffee(order):
 
     for resource in menu.resources:
         if order == "masala chai" and resource != "money":
-            tea["tea_premix"] -= 30
+            menu.tea["tea_premix"] -= 30
             break
         if resource != "money":
             menu.resources[resource] = menu.resources[resource] - menu.MENU[order]["ingredients"][resource]
