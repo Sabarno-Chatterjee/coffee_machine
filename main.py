@@ -3,9 +3,6 @@ import menu
 from menu import tea
 
 
-# from menu import tea
-
-
 def take_order():
     """To receive the order as input and return it."""
     order = input("\n\nWhat would you like? (espresso/latte/cappuccino/masala chai): ").lower()
@@ -18,8 +15,7 @@ def take_order():
         report()
     elif order == "refill":
         refill()
-    # elif order == "masala chai":
-    #     make_chai()
+
     return order
 
 
@@ -85,10 +81,6 @@ def sufficient_money(order):
 def make_coffee(order):
     """Take's the order as an argument and prepares the coffee by deducting the resources."""
 
-    # print(tea)
-    # print(f"\nHere's your simmering cup of {order}, enjoy!")
-    # return ()
-
     for resource in menu.resources:
         if order == "masala chai" and resource != "money":
             tea["tea_premix"] -= 30
@@ -100,6 +92,7 @@ def make_coffee(order):
     else:
         print(art.coffee)
     print(f"\nHere's your simmering cup of {order}, enjoy!")
+
 
 # def make_chai(order):
 
