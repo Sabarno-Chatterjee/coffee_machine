@@ -1,6 +1,9 @@
 from art import coffee
 from art import tea
 import menu
+from menu import tea
+
+
 # from menu import tea
 
 
@@ -16,6 +19,8 @@ def take_order():
         report()
     elif order == "refill":
         refill()
+    # elif order == "masala chai":
+    #     make_chai()
     return order
 
 
@@ -32,7 +37,7 @@ def sufficient_resources(order):
     """Checks for sufficient_resources."""
     for resource in menu.resources:
         if order == "masala chai" and resource != "money":
-            if menu.tea["tea_premix"] < menu.MENU[order]["ingredients"][resource]:
+            if tea["tea_premix"] < menu.TEA[order]["ingredients"][resource]:
                 print(f"Insufficient {resource}, please wait for refill.")
                 return False
             else:
@@ -40,6 +45,7 @@ def sufficient_resources(order):
                 return True
 
         if resource != "money":
+
             if (menu.resources[resource]) < (menu.MENU[order]["ingredients"][resource]):
                 print(f"Insufficient {resource}, please wait for refill.")
                 return False
@@ -71,18 +77,19 @@ def sufficient_money(order):
 def make_coffee(order):
     """Take's the order as an argument and prepares the coffee by deducting the resources."""
 
-
     # print(tea)
     # print(f"\nHere's your simmering cup of {order}, enjoy!")
     # return ()
 
     for resource in menu.resources:
         if order == "masala chai" and resource != "money":
-            menu.tea["tea_premix"] -= 30
+            tea["tea_premix"] -= 30
         if resource != "money":
             menu.resources[resource] = menu.resources[resource] - menu.MENU[order]["ingredients"][resource]
     print(coffee)
     print(f"\nHere's your simmering cup of {order}, enjoy!")
+
+# def make_chai(order):
 
 
 def refill():
