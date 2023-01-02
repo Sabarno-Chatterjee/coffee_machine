@@ -25,17 +25,24 @@ MENU = {
     },
 }
 
-
-
 TEA = {
-     "masala chai": {
+    "masala chai": {
         "ingredients": {
             "water": 100,
             "milk": 100,
             "tea_premix": 30,
+            "ice_cubes" : 0,
         },
         "cost": 2.5,
-     }
+    },
+    # "iced tea": {
+    #     "ingredients": {
+    #         "water": 110,
+    #         "milk": 0,
+    #         "tea_premix": 20,
+    #         "ice_cubes": 5
+    #     }
+    # }
 }
 
 resources = {
