@@ -4,7 +4,7 @@ import menu
 
 def take_order():
     """To receive the order as input and return it."""
-    order = input("\n\nWhat would you like? (espresso/latte/cappuccino/masala chai): ").lower()
+    order = input("\n\nWhat would you like? (espresso/latte/cappuccino/masala chai/ice tea): ").lower()
     if order == "off":
         global machine_on
         print("\nMachine down for maintenance. Come back later!\n")
@@ -30,7 +30,7 @@ the current resource values"""
 def sufficient_resources(order):
     """Checks for sufficient_resources."""
     for resource in menu.resources:
-        if order == "masala chai" and resource != "money":
+        if (order == "masala chai" or order == "ice tea") and resource != "money":
             if menu.tea["tea_premix"] < menu.TEA[order]["ingredients"][resource]:
                 print(f"Insufficient {resource}, please wait for refill.")
                 return False

@@ -35,14 +35,14 @@ TEA = {
         },
         "cost": 2.5,
     },
-    # "iced tea": {
-    #     "ingredients": {
-    #         "water": 110,
-    #         "milk": 0,
-    #         "tea_premix": 20,
-    #         "ice_cubes": 5
-    #     }
-    # }
+    "ice tea": {
+        "ingredients": {
+            "water": 110,
+            "milk": 0,
+            "tea_premix": 20,
+            "ice_cubes": 5
+        }
+    }
 }
 
 resources = {
