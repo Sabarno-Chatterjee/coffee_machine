@@ -30,8 +30,8 @@ the current resource values"""
 def sufficient_resources(order):
     """Checks for sufficient_resources."""
     for resource in menu.resources:
-        if (order == "masala chai" or order == "ice tea") and resource != "money":
-            if menu.tea["tea_premix"] < menu.TEA[order]["ingredients"][resource]:
+        if (order == "masala chai" or order == "ice tea") and resource != "money" and resource == "tea_premix":
+            if menu.tea["tea_premix"] < menu.TEA[order]["tea_premix"][resource]:
                 print(f"Insufficient {resource}, please wait for refill.")
                 return False
             else:
