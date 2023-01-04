@@ -1,3 +1,4 @@
+# Procedural logic
 import art
 import menu
 
