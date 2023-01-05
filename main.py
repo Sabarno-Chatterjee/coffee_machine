@@ -11,7 +11,7 @@ money = MoneyMachine()
 resources = CoffeeMaker()
 while machine_on:
 
-    order = Menu()
+    gootorder = Menu()
     available = order.get_items()
     order_name = input(f"What would you like to drink {available}.\n ")
     if order_name == "off":
