@@ -1,61 +1,34 @@
-MENU = {
-    "espresso": {
-        "ingredients": {
-            "water": 50,
-            "coffee": 18,
-            "milk": 0,
-        },
-        "cost": 1.5,
-    },
-    "latte": {
-        "ingredients": {
-            "water": 200,
-            "milk": 150,
-            "coffee": 24,
-        },
-        "cost": 2.5,
-    },
-    "cappuccino": {
-        "ingredients": {
-            "water": 250,
-            "milk": 100,
-            "coffee": 24,
-        },
-        "cost": 3.0,
-    },
-}
-
-TEA = {
-    "masala chai": {
-        "ingredients": {
-            "water": 100,
-            "milk": 100,
-            "tea_premix": 30,
-            "ice_cubes" : 0,
-        },
-        "cost": 2.5,
-    },
-    "ice tea": {
-        "ingredients": {
-            "water": 110,
-            "milk": 0,
-            "tea_premix": 20,
-            "ice_cubes": 5
+class MenuItem:
+    """Models each Menu Item."""
+    def __init__(self, name, water, milk, coffee, cost):
+        self.name = name
+        self.cost = cost
+        self.ingredients = {
+            "water": water,
+            "milk": milk,
+            "coffee": coffee
         }
-    }
-}
 
-resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
-    "money": 0,
-}
 
-tea = {
-    "tea_premix": 100,
-}
+class Menu:
+    """Models the Menu with drinks."""
+    def __init__(self):
+        self.menu = [
+            MenuItem(name="latte", water=200, milk=150, coffee=24, cost=2.5),
+            MenuItem(name="espresso", water=50, milk=0, coffee=18, cost=1.5),
+            MenuItem(name="cappuccino", water=250, milk=50, coffee=24, cost=3),
+        ]
 
-add_on = {
-    "sugar": 100,
-}
+    def get_items(self):
+        """Returns all the names of the available menu items"""
+        options = ""
+        for item in self.menu:
+            options += f"{item.name}/"
+        return options
+
+    def find_drink(self, order_name):
+        """Searches the menu for a particular drink by name. Returns that item if it exists, otherwise returns None"""
+        for item in self.menu:
+            if item.name == order_name:
+                return item
+        print("Sorry that item is not available.")
